@@ -714,7 +714,7 @@ main,
 
   .brand img {
     width: min(100%, 460px);
-    height: auto;
+    height: 122px;
     margin: 0 auto;
     object-fit: contain;
     object-position: center;
