@@ -26,7 +26,7 @@ function renderCategories(categories, isModal = false) {
   const container = isModal ? document.getElementById("modal-grid") : document.getElementById("category-list");
   if (!container || !Array.isArray(categories)) return;
 
-  const itemsToRender = isModal ? categories : categories.slice(0, 5);
+  const itemsToRender = isModal ? categories : categories.slice(0, 6);
   container.innerHTML = itemsToRender.map((category) => `
     <a class="category-card" href="#">
       <img src="${category.image}" alt="${category.productName}">

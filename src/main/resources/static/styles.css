@@ -707,8 +707,8 @@ main,
 
   .brand img {
     height: 95px;
-    width: 350px;
-    margin: 0 auto;
+    width: 440px;
+    /* margin: 0 auto; */
     object-fit: contain;
     object-position: center;
   }

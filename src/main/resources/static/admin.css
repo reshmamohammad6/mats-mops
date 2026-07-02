@@ -454,6 +454,10 @@ tbody tr:hover {
         content: "Description";
     }
 
+    #categoriesTable td:nth-child(4)::before {
+        content: "Actions";
+    }
+
     td img {
         width: 58px;
         height: 58px;

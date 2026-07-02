@@ -12,6 +12,7 @@
         <h2>Mats & Mops</h2>
         <ul>
             <li class="active" data-target="products-section">Products</li>
+            <li data-target="categories-section">Categories</li>
             <li><a href="/" target="_blank" style="color: inherit; text-decoration: none;">View Live Site ↗</a></li>
         </ul>
     </div>
@@ -43,7 +44,6 @@
                         <div class="form-group">
                             <label>Category Key</label>
                             <select id="p_category" required>
-                                <option value="categories">Shop by Category</option>
                                 <option value="premiumMats">Premium Mats</option>
                                 <option value="mopsCleaningTools">Mops & Cleaning Tools</option>
                                 <option value="storageSolutions">Storage Solutions</option>
@@ -103,8 +103,8 @@
                             <input type="text" id="c_name" required placeholder="e.g. Mats">
                         </div>
                         <div class="form-group">
-                            <label>Image URL</label>
-                            <input type="text" id="c_image" required placeholder="https://...">
+                            <label>Category Image</label>
+                            <input type="file" id="c_image" accept="image/*" capture="environment" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
@@ -125,6 +125,7 @@
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

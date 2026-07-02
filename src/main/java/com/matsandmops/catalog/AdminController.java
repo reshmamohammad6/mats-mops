@@ -34,6 +34,11 @@ public class AdminController {
         return categoryRepository.findAll();
     }
 
+    @org.springframework.web.bind.annotation.DeleteMapping("/categories/{id}")
+    public void deleteCategory(@org.springframework.web.bind.annotation.PathVariable Long id) {
+        categoryRepository.deleteById(id);
+    }
+
     @PostMapping("/products")
     public Product addProduct(@RequestBody Product product) {
         return productRepository.save(product);

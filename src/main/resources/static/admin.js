@@ -107,10 +107,29 @@ async function fetchCategories() {
                 <td><img src="${c.image}" alt="${c.productName}" onerror="this.src='https://via.placeholder.com/40'"></td>
                 <td><strong>${c.productName}</strong></td>
                 <td><small style="color: #94a3b8">${c.description}</small></td>
+                <td>
+                    <button onclick="deleteCategory(${c.id})" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Delete</button>
+                </td>
             </tr>
         `).join('');
     } catch (err) {
         console.error("Error fetching categories:", err);
+    }
+}
+
+async function deleteCategory(id) {
+    if (!confirm("Are you sure you want to delete this category?")) return;
+
+    try {
+        const res = await fetch(`/api/admin/categories/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+            showMessage('categoryMsg', 'Category deleted successfully!', true);
+            fetchCategories();
+        } else {
+            throw new Error('Failed to delete category');
+        }
+    } catch (err) {
+        showMessage('categoryMsg', err.message, false);
     }
 }
 
@@ -179,13 +198,33 @@ document.getElementById('categoryForm').addEventListener('submit', async (e) => 
     btn.textContent = 'Adding...';
     btn.disabled = true;
 
-    const category = {
-        productName: document.getElementById('c_name').value,
-        description: document.getElementById('c_desc').value,
-        image: document.getElementById('c_image').value
-    };
+    const imageFile = document.getElementById('c_image').files[0];
+    if (!imageFile) {
+        alert("Please select an image");
+        btn.textContent = 'Add Category';
+        btn.disabled = false;
+        return;
+    }
 
     try {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+
+        const uploadRes = await fetch('/api/admin/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!uploadRes.ok) throw new Error("Image upload failed");
+
+        const uploadData = await uploadRes.json();
+
+        const category = {
+            productName: document.getElementById('c_name').value,
+            description: document.getElementById('c_desc').value,
+            image: uploadData.url
+        };
+
         const res = await fetch('/api/admin/categories', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
