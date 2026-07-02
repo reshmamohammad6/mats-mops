@@ -230,6 +230,7 @@ img {
   width: 100%;
   height: 100%;
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  touch-action: pan-y;
 }
 
 .hero-carousel-track img {
@@ -684,6 +685,7 @@ main,
     width: min(100% - 22px, 1220px);
     min-height: 112px;
     grid-template-columns: 1fr 44px;
+    padding-bottom: 10px;
   }
 
   .brand {
@@ -691,9 +693,10 @@ main,
   }
 
   .brand img {
-    height: 70px;
-    width: 197px;
+    height: 86px;
+    width: 300px;
     margin: 0 auto;
+    object-fit: contain;
     object-position: center;
   }
 

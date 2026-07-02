@@ -146,27 +146,53 @@ function initCarousel() {
   
   startAutoSlide();
   
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, {passive: true});
-  
-  track.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
+  let dragStartX = 0;
+  let dragDeltaX = 0;
+  let isDragging = false;
+
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse') return;
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragDeltaX = 0;
+    track.style.transition = 'none';
+    track.setPointerCapture(e.pointerId);
+  });
+
+  track.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    dragDeltaX = e.clientX - dragStartX;
+    track.style.transform = `translateX(calc(-${currentSlide * 100}% + ${dragDeltaX}px))`;
+  });
+
+  track.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = '';
     handleSwipe();
-  }, {passive: true});
-  
+    track.releasePointerCapture(e.pointerId);
+  });
+
+  track.addEventListener('pointercancel', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = '';
+    dragDeltaX = 0;
+    updateSlide();
+  });
+
   function handleSwipe() {
     const swipeThreshold = 50;
-    if (touchStartX - touchEndX > swipeThreshold) {
+    if (dragDeltaX < -swipeThreshold) {
       nextSlide();
       startAutoSlide();
-    } else if (touchEndX - touchStartX > swipeThreshold) {
+    } else if (dragDeltaX > swipeThreshold) {
       prevSlide();
       startAutoSlide();
+    } else {
+      updateSlide();
     }
+    dragDeltaX = 0;
   }
 }
 
