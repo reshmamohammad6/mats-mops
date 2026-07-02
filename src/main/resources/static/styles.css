@@ -697,19 +697,24 @@ main,
 
 @media (max-width: 720px) {
   .topbar {
-    width: min(100% - 22px, 1220px);
-    min-height: 96px;
+    width: min(100% - 28px, 1220px);
+    min-height: auto;
     grid-template-columns: 1fr 44px;
-    padding-bottom: 8px;
+    row-gap: 8px;
+    padding: 6px 0 10px;
   }
 
   .brand {
     grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .brand img {
-    height: 95px;
-    width: min(440px, 100%);
+    width: min(100%, 460px);
+    height: auto;
     margin: 0 auto;
     object-fit: contain;
     object-position: center;
