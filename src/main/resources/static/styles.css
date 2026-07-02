@@ -696,9 +696,9 @@ main,
 @media (max-width: 720px) {
   .topbar {
     width: min(100% - 22px, 1220px);
-    min-height: 112px;
+    min-height: 96px;
     grid-template-columns: 1fr 44px;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
   }
 
   .brand {
@@ -706,7 +706,7 @@ main,
   }
 
   .brand img {
-    height: 95px;
+    height: 76px;
     width: 350px;
     margin: 0 auto;
     object-fit: contain;
@@ -726,6 +726,8 @@ main,
   .hero {
     height: 50vw;
     min-height: 250px;
+    padding-right: 0;
+    padding-left: 0;
     background-position: center;
   }
 

@@ -269,38 +269,227 @@ tbody tr:hover {
 @media (max-width: 768px) {
     body {
         flex-direction: column;
+        min-width: 0;
     }
+
     .sidebar {
         width: 100%;
-        padding: 15px;
+        padding: 14px;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
-        position: relative;
+        position: sticky;
+        top: 0;
         height: auto;
+        z-index: 20;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
     }
+
+    .sidebar h2 {
+        margin-bottom: 14px;
+        font-size: 1.15rem;
+        text-align: left;
+    }
+
     .sidebar ul {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: none;
     }
+
+    .sidebar ul::-webkit-scrollbar {
+        display: none;
+    }
+
     .sidebar li {
+        flex: 0 0 auto;
+        min-width: max-content;
         margin-bottom: 0;
-        flex: 1;
-        min-width: 120px;
+        padding: 0.75rem 1rem;
         text-align: center;
-    }
-    .main-content {
-        padding: 15px;
-    }
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
+        border-left: 0;
+        border-bottom: 3px solid transparent;
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.45);
         white-space: nowrap;
+    }
+
+    .sidebar li.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--primary);
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    header {
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.35rem;
+    }
+
+    .user-profile {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .panel-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .glass-card {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .glass-card h3 {
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        min-height: 44px;
+        padding: 0.8rem 0.9rem;
+        font-size: 16px;
+    }
+
+    .form-group textarea {
+        min-height: 92px;
+    }
+
+    .btn-primary {
+        min-height: 46px;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .table-responsive {
+        overflow: visible;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        display: grid;
+        gap: 12px;
+    }
+
+    tr {
+        display: grid;
+        gap: 10px;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        background: rgba(15, 23, 42, 0.5);
+    }
+
+    td {
+        display: grid;
+        grid-template-columns: 82px 1fr;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+        border-bottom: 0;
+        font-size: 0.9rem;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    td::before {
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    #productsTable td:nth-child(1)::before,
+    #categoriesTable td:nth-child(1)::before {
+        content: "Image";
+    }
+
+    #productsTable td:nth-child(2)::before,
+    #categoriesTable td:nth-child(2)::before {
+        content: "Name";
+    }
+
+    #productsTable td:nth-child(3)::before {
+        content: "Category";
+    }
+
+    #productsTable td:nth-child(4)::before {
+        content: "Price";
+    }
+
+    #productsTable td:nth-child(5)::before {
+        content: "Actions";
+    }
+
+    #categoriesTable td:nth-child(3)::before {
+        content: "Description";
+    }
+
+    td img {
+        width: 58px;
+        height: 58px;
+    }
+
+    td button,
+    #productPagination button {
+        min-height: 36px;
+        min-width: 44px;
+        font-size: 0.85rem;
+    }
+
+    #productPagination {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 420px) {
+    .main-content {
+        padding: 12px;
+    }
+
+    .sidebar {
+        padding: 12px;
+    }
+
+    header {
+        margin-bottom: 1.2rem;
+    }
+
+    .glass-card {
+        padding: 0.85rem;
+    }
+
+    td {
+        grid-template-columns: 72px 1fr;
+        gap: 8px;
     }
 }
