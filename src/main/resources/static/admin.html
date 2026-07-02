@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mats & Mops - Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Mats & Mops</h2>
+        <ul>
+            <li class="active" data-target="products-section">Products</li>
+            <li><a href="/" target="_blank" style="color: inherit; text-decoration: none;">View Live Site ↗</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <div class="user-profile">Admin</div>
+        </header>
+
+        <!-- Products Section -->
+        <section id="products-section" class="content-section active">
+            <div class="panel-header">
+                <h2>Manage Products</h2>
+            </div>
+            <div class="dashboard-grid">
+                <!-- Add Product Form -->
+                <div class="glass-card form-container">
+                    <h3>Add New Product</h3>
+                    <form id="productForm">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="p_name" required placeholder="e.g. Luxury Floor Mat">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="text" id="p_price" required placeholder="e.g. ₹599">
+                        </div>
+                        <div class="form-group">
+                            <label>Category Key</label>
+                            <select id="p_category" required>
+                                <option value="categories">Shop by Category</option>
+                                <option value="premiumMats">Premium Mats</option>
+                                <option value="mopsCleaningTools">Mops & Cleaning Tools</option>
+                                <option value="storageSolutions">Storage Solutions</option>
+                                <option value="bottles">Bottles</option>
+                                <option value="decor">Decor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Product Image</label>
+                            <input type="file" id="p_image" accept="image/*" capture="environment" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="p_desc" required placeholder="Describe the product..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </form>
+                    <div id="productMsg" class="msg"></div>
+                </div>
+
+                <!-- Product List -->
+                <div class="glass-card list-container">
+                    <h3>Current Products</h3>
+                    <div class="table-responsive">
+                        <table id="productsTable">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Products will be injected here -->
+                            </tbody>
+                        </table>
+                        <div id="productPagination" style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories-section" class="content-section" style="display: none;">
+            <div class="panel-header">
+                <h2>Manage Categories</h2>
+            </div>
+            <div class="dashboard-grid">
+                <!-- Add Category Form -->
+                <div class="glass-card form-container">
+                    <h3>Add New Category</h3>
+                    <form id="categoryForm">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <input type="text" id="c_name" required placeholder="e.g. Mats">
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" id="c_image" required placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="c_desc" required placeholder="Short category description..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Category</button>
+                    </form>
+                    <div id="categoryMsg" class="msg"></div>
+                </div>
+
+                <!-- Category List -->
+                <div class="glass-card list-container">
+                    <h3>Current Categories</h3>
+                    <div class="table-responsive">
+                        <table id="categoriesTable">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Categories will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
